@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  web:
+    image: nginx:latest
+    restart: always
+    ports:
+      - "8080:80"
+    volumes:
+      - /var/www/html/pizzon-master:/usr/share/nginx/html

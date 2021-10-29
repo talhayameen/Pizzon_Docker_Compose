@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+     <title>Pizzon</title>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+     <link rel="stylesheet" href="css/font-awesome.min.css">
+     <link rel="stylesheet" href="css/animate.css">
+     <link rel="stylesheet" href="css/owl.carousel.css">
+     <link rel="stylesheet" href="css/owl.theme.default.min.css">
+     <link rel="stylesheet" href="css/magnific-popup.css">
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+
+     <div id="snackbar">Some message..</div>
+
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+
+               <span class="spinner-rotate"></span>
+
+          </div>
+     </section>
+
+     <!-- Cart Modal -->
+     <div class="modal fade" id="carModal" style="background: #000000a6;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                    <div class="modal-header orderModal">
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                         </button>
+                    </div>
+                    <div class="modal-body">
+                         <div id="listdata"></div>
+                    </div>
+                    <div class="modal-footer">
+                         <a href="order.html" class="btn btn-lg btn-danger">Place Order</a>
+                    </div>
+               </div>    
+          </div>
+     </div>
+     <!-- end -->
+     <!-- Login Model -->
+     <div class="modal fade" id="loginModal" style="background: #000000a6;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                    <div class="modal-header orderModal">
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                         </button>
+                    </div>
+                    <div class="modal-body">
+                         <div class="loginheader">
+                              <h2>Login</h2>
+                         </div>
+                         <form onsubmit="customerLogin(event)">
+                              <div class="orderplaceBody">
+                                   <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" required placeholder="Email">
+                                   </div>
+                                   <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" placeholder="Password">
+                                   </div>
+                                   <div class="form-group">
+                                        <h6 id='loginError' style="display: none;" class="text-danger"></h6>
+                                   </div>
+                              </div>
+                    </div>
+                    <div class="modal-footer">
+                         <button type="submit" id="logbtn" class="btn btn-lg btn-danger">Login</button>
+                    </div>
+               </form>
+               </div>    
+          </div>
+     </div>
+
+
+     <!-- MENU -->
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="index.html" class="navbar-brand">Pizzon <span>.</span> Cafe</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                         <li><a href="#home" class="smoothScroll">Home</a></li>
+                         <li><a href="#about" class="smoothScroll">About</a></li>
+                         <li><a href="#team" class="smoothScroll">Chef</a></li>
+                         <li><a href="#menu" class="smoothScroll">Menu</a></li>
+                         <li><a href="#contact" class="smoothScroll">Contact</a></li>
+                         <li><a href="orderHistory.html" style="display: none;" id="odh" class="smoothScroll">Orderhistory</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                         <li>
+                              <a href="#">Call Now! <i class="fa fa-phone"></i> +84-35-709-1315</a>
+                         </li >
+                         <a href="registration.html" id="signupbtn" class="section-btn signupbtn">SignUp</a>
+                         <div onclick="loginModelView()" id="loginbtn" class="section-btn loginbtn">Login</div>
+                         <label class="section-btn cartbtn" onclick="cartView()">
+                              <i class=" fa fa-shopping-basket" style="font-size:25px;text-shadow: 1px 1px 3px white;"></i>
+                              <span class='badge badge-warning' id='lblCartCount'></span>
+                         </label>
+                         <div onclick="customerLogout()" style="display: none;"  id="logoutbtn" class="section-btn loginbtn">Logout</div>
+                         
+                    </ul>
+               </div>
+
+          </div>
+     </section>
+
+
+     <!-- HOME -->
+     <section id="home" class="slider" data-stellar-background-ratio="0.5">
+          <div class="row">
+
+               <div class="owl-carousel owl-theme">
+                    <div class="item item-first">
+                         <div class="caption">
+                              <div class="container">
+                                   <div class="col-md-8 col-sm-12">
+                                        <h3>Pizzon Cafe &amp; Restaurant</h3>
+                                        <h1>Our mission is to provide an unforgettable experience</h1>
+                                        <a href="#team" class="section-btn btn btn-default smoothScroll">Meet our
+                                             chef</a>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="item item-second">
+                         <div class="caption">
+                              <div class="container">
+                                   <div class="col-md-8 col-sm-12">
+                                        <h3>Your Perfect Breakfast</h3>
+                                        <h1>The best dinning quality can be here too!</h1>
+                                        <a href="#menu" class="section-btn btn btn-default smoothScroll">Discover
+                                             menu</a>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="item item-third">
+                         <div class="caption">
+                              <div class="container">
+                                   <div class="col-md-8 col-sm-12">
+                                        <h3>New Restaurant in Town</h3>
+                                        <h1>Enjoy our special menus every Sunday and Friday</h1>
+                                        <a href="#contact"
+                                             class="section-btn btn btn-default smoothScroll">Reservation</a>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+          </div>
+     </section>
+
+
+     <!-- ABOUT -->
+     <section id="about" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+                         <div class="about-info">
+                              <div class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                                   <h4>Read our story</h4>
+                                   <h2>We've been Making The Delicious Foods Since Long</h2>
+                              </div>
+
+                              <div class="wow fadeInUp" data-wow-delay="0.4s">
+                                   <p>We are here to make your evening Beautiful just come to the Pizzon Cafe and have
+                                        your favourite flavour in Pizza and make more fun and love with your lovings</p>
+                                   <p>Pizzon cafe also provides Alot of Deals that you can avail and you can also take
+                                        it to your home we care for your family as they are waiting for Pizzon Delecious
+                                        Pizzas</p>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                         <div class="wow fadeInUp about-image" data-wow-delay="0.6s">
+                              <img src="images/about-image.jpg" class="img-responsive" alt="">
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- TEAM -->
+     <section id="team" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                              <h2>Meet our chefs</h2>
+                              <h4>They are nice &amp; friendly</h4>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                              <img src="images/team-image1.jpg" class="img-responsive" alt="">
+                              <div class="team-hover">
+                                   <div class="team-item">
+                                        <h4>New Catherine</h4>
+                                        <ul class="social-icon">
+                                             <li><a href="#" class="fa fa-linkedin-square"></a></li>
+                                             <li><a href="#" class="fa fa-envelope-o"></a></li>
+                                        </ul>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="team-info">
+                              <h3>New Catherine</h3>
+                              <p>Kitchen Officer</p>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
+                              <img src="images/team-image2.jpg" class="img-responsive" alt="">
+                              <div class="team-hover">
+                                   <div class="team-item">
+                                        <h4>Lindsay Perlen</h4>
+                                        <ul class="social-icon">
+                                             <li><a href="#" class="fa fa-instagram"></a></li>
+                                             <li><a href="#" class="fa fa-flickr"></a></li>
+                                        </ul>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="team-info">
+                              <h3>Lindsay Perlen</h3>
+                              <p>Owner &amp; Manager</p>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
+                              <img src="images/team-image3.jpg" class="img-responsive" alt="">
+                              <div class="team-hover">
+                                   <div class="team-item">
+                                        <h4>Isabella Grace</h4>
+                                        <ul class="social-icon">
+                                             <li><a href="#" class="fa fa-github"></a></li>
+                                             <li><a href="#" class="fa fa-google"></a></li>
+                                        </ul>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="team-info">
+                              <h3>Isabella Grace</h3>
+                              <p>Pizza Specialist</p>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- MENU-->
+     <section id="menu" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                              <h2>Our Menus</h2>
+                              <h4>Tea Time &amp; Dining</h4>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a title="American Breakfast">
+                                   <img src="images/menu-image1.jpg" class="img-responsive" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>American</h3>
+                                             <p> With Tomato / Eggs / Sausage</p>
+                                        </div>
+                                        <div class="menu-price">
+                                             <span>$25
+                                                  <button class="btn btn-md btn-danger"
+                                                       onclick="addToCart('1','American','25')">Add To
+                                                       Cart</button>
+                                             </span>
+
+                                        </div>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a title="Self-made Salad">
+                                   <img src="images/menu-image2.jpg" class="img-responsive" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>Selfie Pizza</h3>
+                                             <p>Green / Fruits / Healthy</p>
+                                        </div>
+                                        <div class="menu-price">
+                                             <span>$18
+                                                  <button class="btn btn-md btn-danger"
+                                                       onclick="addToCart('2','Selfie Pizza','18')">Add To
+                                                       Cart</button>
+                                             </span>
+                                        </div>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a title="Chinese Noodle">
+                                   <img src="images/menu-image3.jpg" class="img-responsive" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>Chinese</h3>
+                                             <p>Pepper / Chicken / Vegetables</p>
+                                        </div>
+                                        <div class="menu-price">
+                                             <span>$34
+                                                  <button class="btn btn-md btn-danger"
+                                                       onclick="addToCart('3','Chinese','34')">Add To
+                                                       Cart</button>
+                                             </span>
+                                        </div>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a title="Rice Soup">
+                                   <img src="images/menu-image4.jpg" class="img-responsive" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>Ricy</h3>
+                                             <p>Green / Chicken</p>
+                                        </div>
+                                        <div class="menu-price">
+                                             <span>$28
+                                                  <button class="btn btn-md btn-danger"
+                                                       onclick="addToCart('4','Ricy','28')">Add To Cart</button>
+                                             </span>
+                                        </div>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a title="Project title">
+                                   <img src="images/menu-image5.jpg" class="img-responsive" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>Deli Pizza</h3>
+                                             <p>Beef / Fried Potatoes</p>
+                                        </div>
+                                        <div class="menu-price">
+                                             <span>$46
+                                                  <button class="btn btn-md btn-danger"
+                                                       onclick="addToCart('5','Deli Pizza','46')">Add To Cart</button>
+                                             </span>
+                                        </div>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <!-- MENU THUMB -->
+                         <div class="menu-thumb">
+                              <a title="Project title">
+                                   <img src="images/menu-image6.jpg" class="img-responsive" alt="">
+
+                                   <div class="menu-info">
+                                        <div class="menu-item">
+                                             <h3>Big Flat Pizza</h3>
+                                             <p>Pepper / Crispy</p>
+                                        </div>
+                                        <div class="menu-price">
+                                             <span>$30
+                                                  <button class="btn btn-md btn-danger"
+                                                       onclick="addToCart('6','Big Flat Pizza','30')">Add To
+                                                       Cart</button>
+                                             </span>
+                                        </div>
+                                   </div>
+                              </a>
+                         </div>
+                    </div>
+
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- TESTIMONIAL -->
+     <section id="testimonial" data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title wow fadeInUp" data-wow-delay="0.1s">
+                              <h2>Testimonials</h2>
+                         </div>
+                    </div>
+
+                    <div class="col-md-offset-2 col-md-8 col-sm-12">
+                         <div class="owl-carousel owl-theme">
+                              <div class="item">
+                                   <p>Pizzon provide the best place for the lovings and the top notch taste of meal</p>
+                                   <div class="tst-author">
+                                        <h4>Linh</h4>
+                                        <span>Enjoying With funny waiters</span>
+                                   </div>
+                              </div>
+
+                              <div class="item">
+                                   <p>You will be provided the best  for the lovings and the top notch taste of meal</p>
+                                   <div class="tst-author">
+                                        <h4>Talha Yameen</h4>
+                                        <span>Owesum taste</span>
+                                   </div>
+                              </div>
+
+                              <div class="item">
+                                   <p>Come to Pizzon the best place for the lovings and the top notch taste of meal</p>
+                                   <div class="tst-author">
+                                        <h4>Jessie White</h4>
+                                        <span>Amazing pizza deals</span>
+                                   </div>
+                              </div>
+
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+     <!-- CONTACT -->
+     <section id="contact" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+                 
+                    <div class="wow fadeInUp col-md-12 col-sm-12" data-wow-delay="0.4s">
+                         <div id="google-map">
+                              <iframe
+                                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3647.3030413476204!2d100.5641230193719!3d13.757206847615207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf51ce6427b7918fc!2sG+Tower!5e0!3m2!1sen!2sth!4v1510722015945"
+                                   allowfullscreen></iframe>
+                         </div>
+                    </div>
+
+                    
+               </div>
+          </div>
+     </section>
+
+
+     <!-- FOOTER -->
+     <footer id="footer" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-3 col-sm-8">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Find us</h2>
+                              </div>
+                              <address class="wow fadeInUp" data-wow-delay="0.4s">
+                                   <p>123 USO Town,<br> 75800<br></p>
+                              </address>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-8">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Reservation</h2>
+                              </div>
+                              <address class="wow fadeInUp" data-wow-delay="0.4s">
+                                   <p>+84 36 709 1315</p>
+                                   <p><a href="mailto:bestdeptrai123@gmail.com">bestdeptrai123@gmail.com</a></p>
+                              </address>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-8">
+                         <div class="footer-info footer-open-hour">
+                              <div class="section-title">
+                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Open Hours</h2>
+                              </div>
+                              <div class="wow fadeInUp" data-wow-delay="0.4s">
+                                   <p>Monday: Closed</p>
+                                   <div>
+                                        <strong>Tuesday to Friday</strong>
+                                        <p>7:00 AM - 9:00 PM</p>
+                                   </div>
+                                   <div>
+                                        <strong>Saturday - Sunday</strong>
+                                        <p>11:00 AM - 10:00 PM</p>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-4">
+                         <ul class="wow fadeInUp social-icon" data-wow-delay="0.4s">
+                              <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                              <li><a href="#" class="fa fa-twitter"></a></li>
+                              <li><a href="#" class="fa fa-instagram"></a></li>
+                              <li><a href="#" class="fa fa-google"></a></li>
+                         </ul>
+
+                         <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s">
+                              <p><br>Copyright &copy; 2020 <br>Pizzon
+</p>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </footer>
+
+
+     <!-- SCRIPTS -->
+     <script src="js/jquery.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+     <script src="js/jquery.stellar.min.js"></script>
+     <script src="js/wow.min.js"></script>
+     <script src="js/owl.carousel.min.js"></script>
+     <script src="js/jquery.magnific-popup.min.js"></script>
+     <script src="js/smoothscroll.js"></script>
+     <script src="js/custom.js"></script>
+     <script src="js/script.js"></script>
+
+</body>
+
+</html>
